@@ -33,7 +33,7 @@ class GccArmEmbedded < Formula
 
     def install
     # GCC will suffer build errors if forced to use a particular linker.
-    ENV.delete "LD"
+    # ENV.delete "LD"
 
     languages = %w[c c++]
 
@@ -55,7 +55,6 @@ class GccArmEmbedded < Formula
       --disable-nls
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
-      --program-suffix=-#{version_suffix}
       --enable-plugins
       --disable-decimal-float
       --disable-libffi
@@ -86,7 +85,7 @@ class GccArmEmbedded < Formula
       --with-bugurl=https://github.com/Homebrew/homebrew-core/issues
     ]
 
-    args << "--with-host-libstdcxx=\"-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm\""
+    args << "--with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm'"
 
 
     # Xcode 10 dropped 32-bit support
